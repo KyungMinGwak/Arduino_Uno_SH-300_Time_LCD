@@ -21,8 +21,8 @@ char sensorBuf[20]="";
 
 void setup(){
   // initialize the LCD
-  lcd.begin(); // lcd를 사용을 시작합니다.
-  lcd.backlight(); // backlight를 On 시킵니다.
+  lcd.begin(); // Start LCD
+  lcd.backlight(); // Turn On backlight
  
   // initialize the Serial,Software Serial
   Serial.begin(9600);
@@ -38,11 +38,6 @@ void setup(){
 void loop(){
   int i=0;
 
-  //Sensor data buf
-  char mPpm[4]="";
-  char mTemp[4]="";
-  char mHumi[4]="";
-
   //Read Sensor data
   digitalRead(pinNumber);
   while(mySerial.available() > 0){
@@ -52,12 +47,8 @@ void loop(){
   //Output Spec of Sensor
   //0 1 2 3  4    5 6 7 8 9   10  11 12 13 14    15 16//
   //  Co2   |b|  Temp value  |b| Humidity val  |\ n|
-  for (int i=0;i<4;i++){
-    mPpm[i]=sensorBuf[i];
-    mTemp[i]=sensorBuf[i+6];
-    mHumi[i]=sensorBuf[i+10];
-  }
- 
+
+  
   //Display Time on LCD, Serial
   digitalClockDisplay(0);
   digitalClockDisplay(1);
@@ -75,7 +66,7 @@ void loop(){
 }
 
 /////Time Lib
-void digitalClockDisplay(int flag){ //flag =0 이면 LCD 출력, else Serial 출력
+void digitalClockDisplay(int flag){ //flag 0 is Display on LCD, else Serial
     if(flag == 0){
       lcd.home();
       lcd.print(month());

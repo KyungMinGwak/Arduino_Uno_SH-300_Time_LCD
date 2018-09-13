@@ -16,7 +16,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);  // I2C LCD 객체 선언
 SoftwareSerial mySerial(10,11); 
 
 
-//Global time buffer
+//Global sensor buffer
 char sensorBuf[20]="";
 
 void setup(){
